@@ -1,5 +1,5 @@
 
-import { FETCHED_MOVIES } from '../actions/movies';
+import { FETCH_MOVIES_FULLFILLED , FETCH_MOVIES_REJECTED } from '../actions/movies';
 
 
 const initialState = {
@@ -14,11 +14,18 @@ const initialState = {
 export default (state=initialState,action) => {
     
     switch (action.type){
-		case FETCHED_MOVIES:
+		case FETCH_MOVIES_FULLFILLED:
 			return {
 				...state,
 				movies: action.payload
 			};
+		case FETCH_MOVIES_REJECTED:
+			return {
+				...state,
+				error: action.payload
+			};
+
+
 		default:
 			return state;
 	}

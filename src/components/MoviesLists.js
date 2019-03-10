@@ -9,7 +9,10 @@ const MoviesLists = ({movies}) => {
     
     const moviesList = (
 		<div>
-			Movies list
+		{
+      movies.error.response ? <h3> {movies.error.response.status}   {movies.error.response.statusText}  </h3> : 'hata yok'
+      
+      }
 		</div>
     );
     
@@ -21,7 +24,9 @@ const MoviesLists = ({movies}) => {
 };
 
 MoviesLists.propTypes = {
-    movies: PropTypes.object.isRequired
+    movies: PropTypes.shape({
+       movies:PropTypes.array.isRequired
+    }).isRequired
 };
 
 export default MoviesLists;
