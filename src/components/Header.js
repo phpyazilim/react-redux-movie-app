@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {Link} from 'react-router-dom'; 
+import {Link,NavLink} from 'react-router-dom'; 
 import {menuStyle , fixedMenuStyle   } from '../helpers/styleHelper';
 import {
     Container,
@@ -43,12 +43,12 @@ class Header extends PureComponent {
           >
         
             <Container text>
-              <Menu.Item>
+              <Menu.Item as={Link} exact="true" to="/">
                 <Image size='mini' src='https://react.semantic-ui.com/logo.png' />
               </Menu.Item>
               <Menu.Item header>Movieapp</Menu.Item>
-              <Menu.Item as={Link}  to="/movies">Movies</Menu.Item>
-              <Menu.Item as='a'>Add New</Menu.Item>
+              <Menu.Item as={NavLink}  exact={true}  to="/movies">Movies</Menu.Item>
+              <Menu.Item  as={NavLink}  exact={true}  to="/movies/new">Add New</Menu.Item>
 
             
             </Container>

@@ -12,13 +12,14 @@ class MoviesPage extends Component {
 
 	componentDidMount() {
 		this.props.fetchMovies();
+	 
 	}
 
 	render() {
 		return (
 			<div>
-				<h2>Movies Page</h2>
-				<MoviesList movies={this.props.movies}></MoviesList>
+				<h2>Movies  </h2>
+				<MoviesList movies={this.props.movies}  ></MoviesList>
 			</div>
 		);
 	}
