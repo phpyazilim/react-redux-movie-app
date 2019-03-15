@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import { Button,  Form, Image } from 'semantic-ui-react';
+import { Button,  Form, Image , Message } from 'semantic-ui-react';
+import { Redirect } from "react-router-dom";
 import InlineError from "./InlineError";
-
+import PropTypes from 'prop-types';
 
 class NewMovieForm extends Component {
     state={
         title:"",
         cover:"",
         errors:{}
+    }
+
+    static propTypes = {
+      onNewMovieSubmit : PropTypes.func.isRequired
     }
 
     handleChange=(e)=>{
@@ -20,7 +25,11 @@ class NewMovieForm extends Component {
       const  errors = this.validate();
       this.setState({
           errors
-      })
+      });
+
+      if(Object.keys(errors).length===0) {
+        this.props.onNewMovieSubmit(this.state);
+      }
       
     };
 
@@ -32,11 +41,12 @@ class NewMovieForm extends Component {
     }
 
     render() {
+      
         const {errors} = this.state;
-        return (
-            <div>
-                <Form onSubmit={this.onSubmit}>
-     <Form.Field error={!!errors.cover}>
+
+        const form = (
+          <Form onSubmit={this.onSubmit} loading={this.props.newMovie.fetching}>
+ <Form.Field error={!!errors.cover}>
       <label>Title</label>
      
       { errors.title && <InlineError message={errors.title} /> }
@@ -63,10 +73,34 @@ class NewMovieForm extends Component {
     
     <Button primary type='submit'>Submit</Button>
     <hr/>
+    {
+         
+
+         this.props.newMovie.error.response && 
+         
+         <Message negative>
+         <Message.Header>We're sorry  </Message.Header>
+         <p>A problem occured while recording</p>
+       </Message>
+
+
+
+    }
+
+    <hr/>
     <Image src={this.state.cover} size='small' /> 
+          </Form>
+        );
+        
+        return (
+            <div>
+                  {
+                    
+                    this.props.newMovie.done ? <Redirect to="/movies" /> : form
 
+                  }
 
-  </Form>
+ 
             </div>
         );
     }

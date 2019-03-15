@@ -25,7 +25,7 @@
            
             <Route path='/movies' exact= {true}  component={MoviesPage}></Route>
             <Route path='/movies/new' exact= {true}  component={NewMoviePage}></Route>
-
+            <Route path='/movie/:_id' exact= {true}  component={NewMoviePage}></Route>
 
            
           </Container>
