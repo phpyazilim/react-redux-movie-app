@@ -6,7 +6,7 @@
   import 'semantic-ui-css/semantic.min.css';
 
 
-
+ import HomePage from './components/pages/HomePage';
   import NewMoviePage from './components/pages/NewMoviePage';
   import MoviesPage from './components/pages/MoviesPage';
   import Footer from './components/Footer'; 
@@ -22,7 +22,8 @@
         <div  >
             <Header />
           <Container text>
-           
+
+            <Route path='/' exact= {true}  component={HomePage}></Route>
             <Route path='/movies' exact= {true}  component={MoviesPage}></Route>
             <Route path='/movies/new' exact= {true}  component={NewMoviePage}></Route>
             <Route path='/movie/:_id' exact= {true}  component={NewMoviePage}></Route>

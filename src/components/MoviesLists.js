@@ -5,7 +5,7 @@ import { Grid} from 'semantic-ui-react'
 import { PropagateLoader} from 'react-spinners';
 
 
-const MoviesLists = ({movies}) => {
+const MoviesLists = ({movies , deleteMovie}) => {
   
     const emptyMessage = (
 		<p>There are no movies yet.</p>
@@ -29,7 +29,7 @@ const MoviesLists = ({movies}) => {
       : 
       <Grid stackable columns={3}>
       {
-      movies.movies.map(movie => <MovieCard key={movie._id} movie={movie} />)  
+      movies.movieList.map(movie => <MovieCard key={movie._id} movie={movie} deleteMovie={deleteMovie} />)  
       }
       </Grid>
       }
@@ -45,7 +45,7 @@ const MoviesLists = ({movies}) => {
 
 MoviesLists.propTypes = {
     movies: PropTypes.shape({
-       movies:PropTypes.array.isRequired
+      movieList:PropTypes.array.isRequired
     }).isRequired
 };
 
